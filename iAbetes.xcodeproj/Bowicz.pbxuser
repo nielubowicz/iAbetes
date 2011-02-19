@@ -1,0 +1,120 @@
+// !$*UTF8*$!
+{
+	1D6058900D05DD3D006BFB54 /* iAbetes */ = {
+		activeExec = 0;
+		executables = (
+			8E56AB86130F6C3400F4E4B6 /* iAbetes */,
+		);
+	};
+	28D7ACF70DDB3853001CB0EB /* iAbetesViewController.m */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1651, 924}}";
+			sepNavSelRange = "{0, 0}";
+			sepNavVisRange = "{0, 1460}";
+		};
+	};
+	29B97313FDCFA39411CA2CEA /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 8E56AB86130F6C3400F4E4B6 /* iAbetes */;
+		activeTarget = 1D6058900D05DD3D006BFB54 /* iAbetes */;
+		addToTargets = (
+			1D6058900D05DD3D006BFB54 /* iAbetes */,
+		);
+		codeSenseManager = 8E56AB93130F6C4600F4E4B6 /* Code sense */;
+		executables = (
+			8E56AB86130F6C3400F4E4B6 /* iAbetes */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					1473,
+					20,
+					48,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 319778158;
+			PBXWorkspaceStateSaveDate = 319778158;
+		};
+		perUserProjectItems = {
+			8E0C552F130F6D79009740B5 /* PBXTextBookmark */ = 8E0C552F130F6D79009740B5 /* PBXTextBookmark */;
+			8E56AB96130F6CE900F4E4B6 = 8E56AB96130F6CE900F4E4B6 /* PBXBookmark */;
+			8E56AB97130F6CE900F4E4B6 = 8E56AB97130F6CE900F4E4B6 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 8E56AB92130F6C4600F4E4B6 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	8E0C552F130F6D79009740B5 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* iAbetesViewController.m */;
+		name = "iAbetesViewController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1460;
+		vrLoc = 0;
+	};
+	8E56AB86130F6C3400F4E4B6 /* iAbetes */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 1;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = iAbetes;
+		sourceDirectories = (
+		);
+	};
+	8E56AB92130F6C4600F4E4B6 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+		};
+	};
+	8E56AB93130F6C4600F4E4B6 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	8E56AB96130F6CE900F4E4B6 /* PBXBookmark */ = {
+		isa = PBXBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* iAbetesViewController.m */;
+	};
+	8E56AB97130F6CE900F4E4B6 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 28D7ACF70DDB3853001CB0EB /* iAbetesViewController.m */;
+		name = "iAbetesViewController.m: 1";
+		rLen = 0;
+		rLoc = 0;
+		rType = 0;
+		vrLen = 1460;
+		vrLoc = 0;
+	};
+}
