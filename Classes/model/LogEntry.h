@@ -11,9 +11,11 @@
 @interface LogEntry : NSObject <NSCoding>
 {
 	NSMutableDictionary *information;	
+	NSDate *timeOfEntry;
 }
 
 -(void)setBloodSugar:(NSUInteger)bloodSugar;
+-(NSUInteger)bloodSugar;
 -(void)setTime:(NSDate *)time;
 
 -(void)setInsulinBolus:(double)units;

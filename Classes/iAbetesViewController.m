@@ -9,12 +9,12 @@
 #import "iAbetesViewController.h"
 #import "NSDate+TimeString.h"
 #import "LogEntry.h"
+#import "Chart.h"
 
 @interface iAbetesViewController()
 
 -(NSString *)documentsDirectory;
 -(void)loadDataFromDisk;
--(void)saveDataToDisk;
 
 @end
 
@@ -26,7 +26,7 @@
 {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
 	{
-		logEntries = [[NSMutableSet alloc] init];
+		logEntries = [[NSMutableArray alloc] init];
 	}
 	return self;
 }
@@ -39,7 +39,6 @@
 -(void)viewWillAppear:(BOOL)animated
 {
 	[super viewWillAppear:animated];
-	NSLog(@"current: %@", [[NSDate date] timeString]);
 	[currentTime setText:[[NSDate date] timeString]];
 }
 
@@ -57,14 +56,22 @@
 		[entry setExercize:[exercizeIntensity value] duration:[[exercizeDuration text] intValue]];
 	
 	[entry setTime:[NSDate date]];	
-	NSLog(@"saving %@", [entry description]);
 	[logEntries addObject:entry];
-	[self saveDataToDisk];
+}
+
+-(IBAction)graph
+{
+	[self loadDataFromDisk];
+	
+	Chart *c = [[[Chart alloc] initWithNibName:@"Chart" bundle:nil] autorelease];
+	[c setData:logEntries];
+	
+	[self presentModalViewController:c animated:YES];
 }
 
 -(void)saveDataToDisk
 {
-	NSString * path = [self documentsDirectory];	
+	NSString *path = [NSString stringWithFormat:@"%@/logs.dat", [self documentsDirectory]];	
 	if (!path) return;
 	
 	NSLog(@"saving %@ to path: %@", [logEntries description], path);
@@ -77,7 +84,7 @@
 
 -(void)loadDataFromDisk
 {
-	NSString *path = [self documentsDirectory];
+	NSString *path = [NSString stringWithFormat:@"%@/logs.dat", [self documentsDirectory]];
 	if (!path) return;
 	
 	NSDictionary *rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:path];    
@@ -86,7 +93,7 @@
 	
 	logEntries = [[rootObject valueForKey:@"logEntries"] retain];
 	if (!logEntries)
-		logEntries = [[NSMutableSet alloc] init];
+		logEntries = [[NSMutableArray alloc] init];
 	
 	NSLog(@"logs loaded: %@", [logEntries description]);
 }
@@ -104,24 +111,14 @@
 	return YES;
 }
 
-- (void)didReceiveMemoryWarning {
-	// Releases the view if it doesn't have a superview.
-    [super didReceiveMemoryWarning];
-	
-	// Release any cached data, images, etc that aren't in use.
-}
-
-- (void)viewDidUnload {
-	// Release any retained subviews of the main view.
-	// e.g. self.myOutlet = nil;
-}
-
-- (void) applicationWillTerminate: (NSNotification *)note
+- (void)dealloc 
 {
-	[self saveDataToDisk];
-}
-
-- (void)dealloc {
+	[currentTime release];
+	[bloodSugar release];
+	[exercizeDuration release];	
+	[exercizeIntensity release];
+	[insulin release];
+	[logEntries release];
     [super dealloc];
 }
 

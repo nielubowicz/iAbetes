@@ -24,6 +24,7 @@
 	if (self = [super init])
 	{
 		information = [[NSMutableDictionary alloc] init];
+		
 	}
 	return self;
 }
@@ -48,9 +49,15 @@
 	[information setObject:[NSNumber numberWithUnsignedInt:bloodSugar] forKey:kBloodSugar];
 }
 
+-(NSUInteger)bloodSugar
+{
+	return [[information objectForKey:kBloodSugar] unsignedIntValue];
+}
+
 -(void)setTime:(NSDate *)time
 {
 	[information setObject:time forKey:kTime];
+	timeOfEntry = [time retain];
 }
 
 -(void)setInsulinBolus:(double)units
@@ -84,6 +91,7 @@
 -(void)dealloc
 {
 	[information release];
+	[timeOfEntry release];
 	[super dealloc];	
 }
 

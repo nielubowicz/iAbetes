@@ -16,7 +16,7 @@
 	IBOutlet UITextField *exercizeDuration;
 	IBOutlet UISlider *exercizeIntensity;
 	
-	NSMutableSet *logEntries;	
+	NSMutableArray *logEntries;	
 }
 
 @property (nonatomic, retain) IBOutlet UILabel *currentTime;
@@ -26,6 +26,8 @@
 @property (nonatomic, retain) IBOutlet UISlider *exercizeIntensity;
 
 -(IBAction)saveLogEntry;
+-(IBAction)graph;
+-(void)saveDataToDisk;
 
 @end
 

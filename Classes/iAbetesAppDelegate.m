@@ -22,6 +22,10 @@
     [window makeKeyAndVisible];
 }
 
+- (void)applicationWillTerminate:(UIApplication *)application
+{
+	[viewController saveDataToDisk];
+}
 
 - (void)dealloc {
     [viewController release];
