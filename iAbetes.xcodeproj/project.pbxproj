@@ -16,6 +16,7 @@
 		28AD733F0D9D9553002E5188 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 28AD733E0D9D9553002E5188 /* MainWindow.xib */; };
 		28D7ACF80DDB3853001CB0EB /* iAbetesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 28D7ACF70DDB3853001CB0EB /* iAbetesViewController.m */; };
 		8E0C5534130F6DBF009740B5 /* LogEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E0C5533130F6DBF009740B5 /* LogEntry.m */; };
+		8E7D054B130F861700459DAE /* NSDate+TimeString.m in Sources */ = {isa = PBXBuildFile; fileRef = 8E7D054A130F861700459DAE /* NSDate+TimeString.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,8 @@
 		8D1107310486CEB800E47090 /* iAbetes-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "iAbetes-Info.plist"; plistStructureDefinitionIdentifier = "com.apple.xcode.plist.structure-definition.iphone.info-plist"; sourceTree = "<group>"; };
 		8E0C5532130F6DBF009740B5 /* LogEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LogEntry.h; sourceTree = "<group>"; };
 		8E0C5533130F6DBF009740B5 /* LogEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LogEntry.m; sourceTree = "<group>"; };
+		8E7D0549130F861700459DAE /* NSDate+TimeString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+TimeString.h"; sourceTree = "<group>"; };
+		8E7D054A130F861700459DAE /* NSDate+TimeString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+TimeString.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +119,8 @@
 			children = (
 				8E0C5532130F6DBF009740B5 /* LogEntry.h */,
 				8E0C5533130F6DBF009740B5 /* LogEntry.m */,
+				8E7D0549130F861700459DAE /* NSDate+TimeString.h */,
+				8E7D054A130F861700459DAE /* NSDate+TimeString.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -178,6 +183,7 @@
 				1D3623260D0F684500981E51 /* iAbetesAppDelegate.m in Sources */,
 				28D7ACF80DDB3853001CB0EB /* iAbetesViewController.m in Sources */,
 				8E0C5534130F6DBF009740B5 /* LogEntry.m in Sources */,
+				8E7D054B130F861700459DAE /* NSDate+TimeString.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

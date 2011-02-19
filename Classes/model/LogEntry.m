@@ -27,6 +27,21 @@
 	}
 	return self;
 }
+-(id)initWithCoder:(NSCoder *)coder
+{
+	if (self = [super init])
+	{
+		information = [[coder decodeObjectForKey:@"information"] retain];
+		if (!information) 
+			information = [[NSMutableDictionary alloc] init];
+	}
+	return self;
+}
+
+-(void)encodeWithCoder:(NSCoder *)coder
+{
+	[coder encodeObject:information forKey:@"information"];
+}
 
 -(void)setBloodSugar:(NSUInteger)bloodSugar
 {
@@ -35,7 +50,7 @@
 
 -(void)setTime:(NSDate *)time
 {
-	[information setObject:timeOfEntry forKey:kTime];
+	[information setObject:time forKey:kTime];
 }
 
 -(void)setInsulinBolus:(double)units
@@ -47,11 +62,6 @@
 {
 	[self setInsulinBolus:units];
 	[information setObject:[NSNumber numberWithDouble:bolusDuration] forKey:kBolusDuration];
-}
-
--(void)addFoodItem:(Food *)item
-{
-	// no food support yet
 }
 
 -(void)setExercize:(double)intensity duration:(NSTimeInterval)duration
@@ -66,9 +76,13 @@
 	[information setObject:[NSNumber numberWithUnsignedInt:fluidOunces] forKey:kWaterConsumed];
 }
 
+-(NSString *)description
+{
+	return [information description];
+}
+
 -(void)dealloc
 {
-	[timeOfEntry release];
 	[information release];
 	[super dealloc];	
 }

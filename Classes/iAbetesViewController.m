@@ -7,43 +7,102 @@
 //
 
 #import "iAbetesViewController.h"
+#import "NSDate+TimeString.h"
+#import "LogEntry.h"
+
+@interface iAbetesViewController()
+
+-(NSString *)documentsDirectory;
+-(void)loadDataFromDisk;
+-(void)saveDataToDisk;
+
+@end
 
 @implementation iAbetesViewController
 
+@synthesize currentTime, bloodSugar, exercizeDuration, exercizeIntensity, insulin;
 
-
-/*
-// The designated initializer. Override to perform setup that is required before the view is loaded.
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
-    if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
-        // Custom initialization
-    }
-    return self;
+-(id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+{
+	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil])
+	{
+		logEntries = [[NSMutableSet alloc] init];
+	}
+	return self;
 }
-*/
 
-/*
-// Implement loadView to create a view hierarchy programmatically, without using a nib.
-- (void)loadView {
+-(void)awakeFromNib
+{
+	[self loadDataFromDisk];
 }
-*/
 
-
-/*
-// Implement viewDidLoad to do additional setup after loading the view, typically from a nib.
-- (void)viewDidLoad {
-    [super viewDidLoad];
+-(void)viewWillAppear:(BOOL)animated
+{
+	[super viewWillAppear:animated];
+	NSLog(@"current: %@", [[NSDate date] timeString]);
+	[currentTime setText:[[NSDate date] timeString]];
 }
-*/
 
 
-/*
-// Override to allow orientations other than the default portrait orientation.
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    // Return YES for supported orientations
-    return (interfaceOrientation == UIInterfaceOrientationPortrait);
+-(IBAction)saveLogEntry
+{
+	LogEntry *entry = [[[LogEntry alloc] init] autorelease];
+	if ([[bloodSugar text] doubleValue]) 
+		[entry setBloodSugar:[[bloodSugar text] doubleValue]];
+	
+	if ([[insulin text] doubleValue]) 
+		[entry setInsulinBolus:[[insulin text] doubleValue]];
+	
+	if ([[exercizeDuration text] intValue])
+		[entry setExercize:[exercizeIntensity value] duration:[[exercizeDuration text] intValue]];
+	
+	[entry setTime:[NSDate date]];	
+	NSLog(@"saving %@", [entry description]);
+	[logEntries addObject:entry];
+	[self saveDataToDisk];
 }
-*/
+
+-(void)saveDataToDisk
+{
+	NSString * path = [self documentsDirectory];	
+	if (!path) return;
+	
+	NSLog(@"saving %@ to path: %@", [logEntries description], path);
+	NSMutableDictionary *rootObject = [NSMutableDictionary dictionary];    
+	[rootObject setValue:logEntries forKey:@"logEntries"];
+	[NSKeyedArchiver archiveRootObject:rootObject toFile:path];
+	
+	[logEntries removeAllObjects];
+}
+
+-(void)loadDataFromDisk
+{
+	NSString *path = [self documentsDirectory];
+	if (!path) return;
+	
+	NSDictionary *rootObject = [NSKeyedUnarchiver unarchiveObjectWithFile:path];    
+	if (logEntries)
+		[logEntries release];
+	
+	logEntries = [[rootObject valueForKey:@"logEntries"] retain];
+	if (!logEntries)
+		logEntries = [[NSMutableSet alloc] init];
+	
+	NSLog(@"logs loaded: %@", [logEntries description]);
+}
+
+- (NSString *)documentsDirectory {
+	
+	NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *basePath = ([paths count] > 0) ? [paths objectAtIndex:0] : nil;
+	return basePath;
+}
+
+-(BOOL)textFieldShouldReturn:(UITextField *)textField
+{
+	[textField resignFirstResponder];
+	return YES;
+}
 
 - (void)didReceiveMemoryWarning {
 	// Releases the view if it doesn't have a superview.
@@ -57,6 +116,10 @@
 	// e.g. self.myOutlet = nil;
 }
 
+- (void) applicationWillTerminate: (NSNotification *)note
+{
+	[self saveDataToDisk];
+}
 
 - (void)dealloc {
     [super dealloc];
